@@ -1,0 +1,8 @@
+[
+  {
+      "USERNAME": "AN NAME TO IDENTIFY THIS ACCOUNT",
+      "CLIENT_ID" : "ed6f52999cd4486792e7fd8e937ce2f8",
+      "CLIENT_SECRET" : "f00838885e7e4e509daaf9391b7b3d4a",
+      "TOKEN" : "./username_token.json"
+  }
+]

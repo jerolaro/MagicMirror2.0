@@ -1,0 +1,22 @@
+
+Upgrade started - ma jul 13 14:59:20 CEST 2020
+system is Linux raspberrypi 4.19.118-v7+ #1311 SMP Mon Apr 27 14:21:24 BST 2020 armv7l GNU/Linux
+the os is Distributor ID: Raspbian Description: Raspbian GNU/Linux 10 (buster) Release: 10 Codename: buster
+doing test run = true, NO updates will be applied!
+
+remote name = origin
+upgrading from version 2.12.0 to 2.12.0
+fetching latest revisions
+git fetch rc=0
+current branch = master
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+no files different from github version
+test merge result rc='' , if empty, no conflicts
+skipping merge, only test run
+downloading dumpactivemodules script
+no modules found needing npm refresh
+removing git alias
+Upgrade ended - ma jul 13 14:59:27 CEST 2020

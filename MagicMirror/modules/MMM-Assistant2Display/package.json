@@ -1,0 +1,34 @@
+{
+  "name": "MMM-Assistant2Display",
+  "version": "2.3.6",
+  "description": "GoogleAssistant Display module",
+  "main": "MMM-Assistant2Display.js",
+  "scripts": {
+    "preinstall": "installer/preinstall.sh",
+    "postinstall": "installer/postinstall.sh",
+    "update": "installer/update.sh",
+    "librespot": "installer/librespot.sh",
+    "spotify": "node installer/spotify-setup.js"
+  },
+  "keywords": [
+    "magic mirror",
+    "MMM-GoogleAssistant",
+    "YouTube",
+    "Spotify",
+    "Cast"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bugsounet/MMM-Assistant2Display"
+  },
+  "author": "bugsounet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bugsounet/MMM-Assistant2Display/issues"
+  },
+  "homepage": "https://github.com/bugsounet/MMM-Assistant2Display",
+  "MD5": "f7f6847aa051fe3ba9b17919ecb85b60",
+  "dependencies": {
+    "@bugsounet/secure-a2d": "^1.0.1"
+  }
+}
