@@ -1,0 +1,246 @@
+/* Magic Mirror Config Sample
+ *
+ * By Michael Teeuw https://michaelteeuw.nl
+ * MIT Licensed.
+ *
+ * For more information on how you can configure this file
+ * See https://github.com/MichMich/MagicMirror#configuration
+ *
+ */
+
+var config = {
+	address: "localhost", 	// Address to listen on, can be:
+							// - "localhost", "127.0.0.1", "::1" to listen on loopback interface
+							// - another specific IPv4/6 to listen on a specific interface
+							// - "0.0.0.0", "::" to listen on any interface
+							// Default, when address config is left out or empty, is "localhost"
+	port: 8080,
+	basePath: "/", 	// The URL path where MagicMirror is hosted. If you are using a Reverse proxy
+					// you must set the sub path here. basePath must end with a /
+	ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"], 	// Set [] to allow all IP addresses
+															// or add a specific IPv4 of 192.168.1.5 :
+															// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
+															// or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
+															// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.3.0/28"],
+
+	useHttps: false, 		// Support HTTPS or not, default "false" will use HTTP
+	httpsPrivateKey: "", 	// HTTPS private key path, only require when useHttps is true
+	httpsCertificate: "", 	// HTTPS Certificate path, only require when useHttps is true
+
+	language: "nl",
+	logLevel: ["INFO", "LOG", "WARN", "ERROR"],
+	timeFormat: 24,
+	units: "metric",
+	// serverOnly:  true/false/"local" ,
+	// local for armv6l processors, default
+	//   starts serveronly and then starts chrome browser
+	// false, default for all NON-armv6l devices
+	// true, force serveronly mode, because you want to.. no UI on this device
+
+	modules: [
+		/*{
+			module: 'MMM-Facial-Recognition',
+			config: {
+				recognitionAlgorithm: 1,
+				lbphThreshold: 100,
+				useUSBCam: false,
+				trainingFile: 'modules/MMM-Facial-Recognition/training.xml',
+				interval: 2,
+				logoutDelay: 15,
+				users: ["jerome"],
+				//Module set used for strangers and if no user is detected
+				defaultClass: "default",
+				//Set of modules which should be shown for every user
+				everyoneClass: "everyone",
+				// Boolean to toggle welcomeMessage
+				welcomeMessage: true
+			}
+		},*/
+		{
+			module: "alert",
+			classes: 'default everyone'
+		},
+		{
+			module: "updatenotification",
+			position: "top_bar",
+			classes: 'default everyone'
+		},
+		{
+			module: "clock",
+			position: "top_left",
+			classes: 'default everyone'
+		},
+		{
+			module: "calendar",
+			header: "Jérôme's kalender",
+			position: "top_left",
+			classes: 'Jerome',
+			config: {
+				calendars: [
+					{
+						symbol: "calendar",
+						url: "",
+						auth:{
+							user: '',
+							pass: '',
+							method: 'basic'
+						}
+					}
+				]
+			}
+		},
+		{
+        module: 'compliments',
+        position: 'middle',
+        classes: 'jerome',
+        config: {
+                updateInterval: 30000,
+                compliments: {
+                        morning: [
+                        "Good morning, Jérôme!"
+                                        ],
+                        afternoon: [
+                        "Good afternoon, Jérôme!"
+                                        ],
+                        evening: [
+                                "Good evening, Jérôme!",
+                                "Good night, Jérôme!"
+                                ]
+                        }
+                }
+        },
+		{
+			module: "compliments",
+			position: "middle",
+			classes: 'default'
+		},
+		{
+			module: 'MMM-GoogleFit',
+			position: 'bottom_right',
+			classes: 'jerome',
+			config: {
+				startOnMonday: true,
+				
+			}
+		},
+		{
+			module: "currentweather",
+			position: "top_right",
+			classes: 'default everyone',
+			config: {
+				location: "Evergem",
+				locationID: "", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				appid: "",
+				onlyTemp: true,
+				
+			}
+		},
+		{
+			module: "weatherforecast",
+			position: "top_right",
+			header: "Weersvoorspelling",
+			classes: 'everyone',
+			config: {
+				location: "Evergem",
+				locationID: "", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				appid: "",
+				appendLocationNameToHeader: false,
+				
+			}
+		},
+		{
+		  module: "MMM-GoogleAssistant",
+		  position: "bottom_center",
+		  classes: 'everyone',
+		  config: {
+			debug: false,
+			assistantConfig: {
+			  lang: "en-US",
+			  latitude: 51.05,
+			  longitude: 3.71667,
+			},
+			responseConfig: {
+			  useScreenOutput: true,
+			  screenOutputCSS: "screen_output.css",
+			  screenOutputTimer: 5000,
+			  activateDelay: 250,
+			  useAudioOutput: true,
+			  useChime: true,
+			  newChime: false,
+			  useNative: true,
+			  playProgram: "mpg321"
+			},
+			micConfig: { // put there configuration generated by auto-installer
+			  recorder: "arecord",
+			  device: "plughw:2",
+			},
+			customActionConfig: {
+			  autoMakeAction: false,
+			  autoUpdateAction: false, // in RPI, gaction CLI might have some trouble.(current version should be 2.2.4, but for linux-arm, Google haven't updated) so leave this as false in RPI. I don't know it is solved or not.
+			  actionLocale: "en-US", // At this moment, multi-languages are not supported, sorry. Someday I'll work.
+			},
+			snowboy: {
+			  audioGain: 2.0,
+			  Frontend: true,
+			  Model: "jarvis",
+			  Sensitivity: null
+			},
+			A2DServer: {
+			  useA2D: true,
+			  stopCommand: "stop"
+			},
+			recipes: [  ]
+		  }
+		},
+		{
+		  module: "MMM-Spotify",
+		  position: "bottom_left",
+		  classes: 'everyone',
+		  config: {
+			style: "mini", 
+			deviceDisplay: "Magie! de muziek speelt op: "
+		  }
+		},
+		{
+		  module: "MMM-Assistant2Display",
+		  position: "bottom_left",
+		  config: {
+			debug:false,
+			useYoutube: false,
+			screen: {
+			  useScreen: false,
+			  delay: 5 * 60 * 1000,
+			  turnOffDisplay: true,
+			  ecoMode: true,
+			  displayCounter: true,
+			  displayBar: false,
+			  displayStyle: "Text",
+			  text: "Auto Turn Off Screen:",
+			  detectorSleeping: false,
+			  governorSleeping: false,
+			  rpi4: false
+			},
+			spotify: {
+			  useSpotify: true,
+			  useIntegred: true,
+			  useLibrespot: true,
+			  connectTo: "MagicMirror2.0",
+			  playDelay: 3000,
+			  minVolume: 10,
+			  maxVolume: 100,
+			  updateInterval: 1000,
+			  idleInterval: 10000,
+			  username: "",
+			  password: "",
+			  CLIENT_ID: "",
+			  CLIENT_SECRET: "",
+			  deviceDisplay: "",
+			  usePause: true
+			}
+		  }
+		},
+	]
+};
+
+/*************** DO NOT EDIT THE LINE BELOW ***************/
+if (typeof module !== "undefined") {module.exports = config;}
