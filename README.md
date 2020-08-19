@@ -8,4 +8,5 @@ kader wil ik een interactieve slimme spiegel presenteren met verschillende funct
 zorgen dat elke minuut van de gebruiker op de juiste manier wordt gebruikt.
 
 De broncode kan gedownload worden via de volgende link : https://we.tl/t-UWzN63gj9D
+
 De volledige presentatievideo kan je bekijken via deze link : https://youtu.be/vfiBb1pxG-o
